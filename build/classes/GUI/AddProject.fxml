@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddProjectController">
+   <children>
+      <AnchorPane layoutX="98.0" layoutY="48.0" prefHeight="486.0" prefWidth="503.0">
+         <children>
+            <TextField fx:id="Name" layoutX="151.0" layoutY="59.0" prefHeight="26.0" prefWidth="163.0" stylesheets="@AddTournamentStyle.css" />
+            <Label layoutX="14.0" layoutY="113.0" stylesheets="@AddTournamentStyle.css" text="Description" />
+            <Label layoutX="16.0" layoutY="207.0" prefHeight="18.0" prefWidth="42.0" stylesheets="@AddTournamentStyle.css" text="Status" />
+            <TextArea fx:id="Description" layoutX="151.0" layoutY="113.0" prefHeight="50.0" prefWidth="192.0" stylesheets="@AddTournamentStyle.css" />
+            <TextField fx:id="status" layoutX="151.0" layoutY="201.0" stylesheets="@AddTournamentStyle.css" />
+             <TextField fx:id="theme" layoutX="151.0" layoutY="291.0" stylesheets="@AddTournamentStyle.css" />
+            <TextField fx:id="location" layoutX="151.0" layoutY="240.0" stylesheets="@AddTournamentStyle.css" />
+           
+            
+            <Label layoutX="15.0" layoutY="246.0" prefHeight="18.0" prefWidth="77.0" stylesheets="@AddTournamentStyle.css" text="Location" />
+            <Label layoutX="15.0" layoutY="297.0" prefHeight="18.0" prefWidth="78.0" stylesheets="@AddTournamentStyle.css" text="Theme" />
+            
+            <Button layoutX="6.0" layoutY="337.0" mnemonicParsing="false" onAction="#selectPhoto" prefWidth="117.0" stylesheets="@AddTournamentStyle.css" text="Select photo" />
+            <ImageView fx:id="Photo" fitHeight="81.0" fitWidth="117.0" layoutX="172.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="19.0" layoutY="63.0" stylesheets="@AddTournamentStyle.css" text="Name" />
+            <Label layoutX="201.0" layoutY="-32.0" prefHeight="65.0" prefWidth="240.0" stylesheets="@AddTournamentStyle.css" text="ADD PROJECT">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+           
+         </children>
+      </AnchorPane>
+      <Button layoutX="680.0" layoutY="28.0" mnemonicParsing="false" onAction="#goBack" stylesheets="@AddTournamentStyle.css" text="Back" />
+      <Button layoutX="666.0" layoutY="504.0" mnemonicParsing="false" onAction="#Ajouter" stylesheets="@AddTournamentStyle.css" text="Ajouter" />
+   </children>
+  
+</AnchorPane>

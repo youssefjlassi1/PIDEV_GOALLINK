@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="1050.0" stylesheets="@AddTournamentStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProjectListController">
+   <children>
+<GridPane>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+</GridPane>
+
+      <TableView fx:id="tournamentsTable" layoutX="25.0" layoutY="181.0" prefHeight="332.0" prefWidth="1000.0" stylesheets="@AddTournamentStyle.css">
+        <columns>
+          <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="0.0" text="ID" />
+          <TableColumn fx:id="nameColumn" prefWidth="136.0" text="Name" />
+          <TableColumn fx:id="descriptionColumn" prefWidth="164.0" text="Description" />
+          <TableColumn fx:id="themeColumn" prefWidth="100.0" text="Theme" />
+          <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status" />
+          <TableColumn fx:id="locationColumn" prefWidth="100.0" text="Location" />
+          <TableColumn fx:id="photoColumn" prefWidth="100.0" text="Photo" />
+          <TableColumn fx:id="deleteColumn" prefWidth="100.0" text="Delete" />
+          <TableColumn fx:id="editColumn" prefWidth="100.0" text="Edit" />
+          <TableColumn fx:id="shareColumn" prefWidth="100.0" text="Share" />
+        </columns>
+      </TableView>
+      <Button fx:id="addButton" layoutX="914.0" layoutY="106.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="26.0" prefWidth="77.0" stylesheets="@AddTournamentStyle.css" text="Add" textAlignment="CENTER">
+         <font>
+            <Font name="Bookman Old Style" size="15.0" />
+         </font></Button>
+      <ImageView fitHeight="134.0" fitWidth="212.0" layoutX="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@team-d-2-63f51cd589cb3.png" />
+         </image>
+      </ImageView>
+ <Button layoutX="482.0" layoutY="136.0" onAction="#searchProjects" text="Search" />
+ <TextField fx:id="searchField" layoutX="218.0" layoutY="136.0" onKeyReleased="#searchProjects" />
+
+      
+   </children>
+   
+</AnchorPane>

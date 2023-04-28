@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Gamer/hivePi/src/tests/Workshop3A34.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/entites/Tournament.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/entites/Match.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/CalendarActivity.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/TournamentsHomePage.fxml</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/utils/MyConnection.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/Calendar.fxml</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/AddTournament.fxml</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/TournamentListController.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/TopPlayers.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/AddMatch.fxml</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/TournamentList.fxml</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/services/CRUDMatch.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/TournamentDetailsController.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/AddMatchController.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/MainController.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/TournamentsHomePage.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/TeamRankingsController.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/Main.fxml</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/services/CRUDTournament.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/EditMatchController.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/CalendarController.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/FirstWindow.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/AddTournamentStyle.css</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/AddTournamentController.java</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/style.css</file>
+            <file>file:/C:/Users/Gamer/hivePi/src/GUI/TournamentDetails.fxml</file>
+        </group>
+    </open-files>
+</project-private>

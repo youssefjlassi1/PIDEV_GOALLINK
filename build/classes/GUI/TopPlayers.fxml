@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+   <AnchorPane id="AnchorPane" prefHeight="300" prefWidth="400" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TopPlayers">
+    <children>
+        <VBox prefHeight="300.0" prefWidth="400.0">
+            <TableView fx:id="leaderboardTable" prefHeight="300.0" prefWidth="400.0">
+         <columns>
+             <TableColumn fx:id="nameColumn" prefWidth="250.0" text="Name" />
+             <TableColumn fx:id="rankColumn" prefWidth="75.0" text="Rank" />
+             <TableColumn fx:id="lpColumn" prefWidth="75.0" text="LP" />
+         </columns>
+            </TableView>
+        </VBox>
+    </children>
+   </AnchorPane>
+
+
+
+

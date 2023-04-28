@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane id="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainController">
+    <ImageView fitHeight="667.0" fitWidth="983.0" preserveRatio="false">
+        <Image url="@bg.jpg" />
+    </ImageView>
+    <VBox id="navbar">
+        <HBox prefHeight="66.0" prefWidth="800.0" />
+       <AnchorPane id="content" cache="true" depthTest="DISABLE" prefHeight="653.0" prefWidth="983.0" stylesheets="@style.css">
+           <Button id="tournamentButton" fx:id="TournamentList" layoutX="392.0" layoutY="175.0" onAction="#handleTournamenttButton" prefHeight="17.0" prefWidth="136.0" text="Projects List" />
+           <Button id="matchButton" fx:id="MatchList" layoutX="392.0" layoutY="250.0" onAction="#handleMatchtButton" text="Task List" />
+           <MenuBar id="menuBar" layoutX="-275.0" layoutY="65.0">
+               <Menu text="Lists">
+                   <MenuItem text="Tournament List" />
+                   <MenuItem text="Match List" />
+               </Menu>
+           </MenuBar>
+         <Button id="calendarButton" fx:id="Calendar" layoutX="392.0" layoutY="325.0" onAction="#handleCalendarButton" text="Your calendar" />
+            <ImageView id="logo" fitHeight="184.0" fitWidth="188.0" layoutX="41.0" layoutY="9.0">
+                <image>
+                    <Image url="@team-d-2-63f51cd589cb3.png" />
+                </image>
+            </ImageView>
+         <Button id="calendarButton" fx:id="League" layoutX="392.0" layoutY="402.0" onAction="#handleLeagueButton" text="Top League Players" />
+         <Text fx:id="text" fontSmoothingType="LCD" layoutX="417.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HIVE" textAlignment="CENTER" wrappingWidth="174.236328125">
+            <font>
+               <Font name="Bookman Old Style Bold" size="53.0" />
+            </font>
+         </Text>
+         <Button id="calendarButton" fx:id="League1" layoutX="392.0" layoutY="478.0" onAction="#handleHomeButton" text="Our Home Page" />
+         <effect>
+            <DropShadow height="56.17" radius="45.1725" spread="0.46" width="126.52" />
+         </effect>
+       </AnchorPane>
+    </VBox>
+</StackPane>

@@ -1,0 +1,67 @@
+/* Root styles */
+.root {
+    -fx-background-color: #f1f1f1;
+}
+
+/* Form styles */
+.anchor-pane {
+    -fx-padding: 20px;
+    -fx-background-color: #fff;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+}
+
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+}
+
+.text-field {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 30px;
+    -fx-border-radius: 3px;
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #ddd;
+    -fx-padding: 5px;
+}
+
+.text-area {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 70px;
+    -fx-border-radius: 3px;
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #ddd;
+    -fx-padding: 5px;
+}
+
+.date-picker {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 30px;
+}
+
+.button {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-border-radius: 3px;
+    -fx-background-color: #FFA500;
+    -fx-text-fill: #fff;
+}
+
+.button:hover {
+    -fx-background-color: #edbd1f;
+}
+
+.photo {
+    -fx-fit-width: 100px;
+    -fx-fit-height: 70px;
+}
+
+/* Error message styles */
+.error-message {
+    -fx-background-color: #f44336;
+    -fx-padding: 10px;
+    -fx-text-fill: #fff;
+    -fx-border-radius: 3px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
