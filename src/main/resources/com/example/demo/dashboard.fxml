@@ -237,6 +237,14 @@
                                                     </font>
                                                 </Label>
                                                 <ComboBox fx:id="addMember_position" layoutX="423.0" layoutY="367.0" onAction="#addMemberPositionList" prefWidth="150.0" promptText="Choose" styleClass="textfield" stylesheets="@dashboardDesign.css" />
+                                                <Label layoutX="360.0" layoutY="409.0" text="Email:">
+                                                    <font>
+                                                        <Font name="Tahoma" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="addMember_email" layoutX="423.0" layoutY="405.0" prefHeight="25.0" prefWidth="172.0" styleClass="textfield" stylesheets="@dashboardDesign.css" />
+
+
                                                 <AnchorPane layoutX="716.0" layoutY="316.0" prefHeight="127.0" prefWidth="101.0" stylesheets="@dashboardDesign.css">
                                                     <styleClass>
                                                         <String fx:value="white-bg" />
@@ -297,13 +305,6 @@
                                                     </font>
                                                 </Label>
                                             </children>
-                                        </AnchorPane>
-                                        <AnchorPane layoutX="321.0" layoutY="16.0" prefHeight="523.0" prefWidth="554.0" stylesheets="@dashboardDesign.css">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="shadow" />
-                                            </styleClass>
-
                                         </AnchorPane>
                                     </children>
                                 </AnchorPane>

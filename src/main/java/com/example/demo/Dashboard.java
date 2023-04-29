@@ -8,6 +8,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -64,8 +65,6 @@ public class Dashboard {
     @FXML
     private Button edit_btn;
 
-    @FXML
-    private Button salary_btn;
 
     @FXML
     private Button logout;
@@ -129,13 +128,16 @@ public class Dashboard {
     private TextField addMember_lastName;
 
     @FXML
-    private ComboBox<?> addMember_gender;
+    private TextField addMember_email;
+
+    @FXML
+    private ComboBox<String> addMember_gender;
 
     @FXML
     private TextField addMember_phoneNum;
 
     @FXML
-    private ComboBox<?> addMember_position;
+    private ComboBox<String> addMember_position;
 
 
     private Connection connect;
@@ -150,31 +152,55 @@ public class Dashboard {
 
     public void homeTotalMembers() {
 
-//        String sql = "";
-//
-//        connect = database.connectDb();
-//        int countData = 0;
-//        try {
-//
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//
-//
-//            home_totalMembers.setText(String.valueOf(countData));
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        String sql = "SELECT COUNT(*) FROM member";
+
+        connect = database.connectDb();
+        int countData = 0;
+        try {
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                countData = result.getInt("COUNT(*)");
+            }
+            home_totalMembers.setText(String.valueOf(countData));
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
-    //SETUP MAIL SERVER PROPERTIES
-    //DRAFT AN EMAIL
-    //SEND EMAIL
 
-    Session newSession = null;
-    MimeMessage mimeMessage = null;
-    public static void sendMail(String recepient,String emailMember, String passwordMember) throws Exception {
+    public void homeChart() {
+
+        home_chart.getData().clear();
+
+        String sql = "SELECT date, COUNT(member_id) FROM member GROUP BY date ORDER BY TIMESTAMP(date) ASC LIMIT 7";
+
+        connect = database.connectDb();
+
+        try {
+            XYChart.Series chart = new XYChart.Series();
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
+            }
+
+            home_chart.getData().add(chart);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void sendMail(String recepient,String emailMember, String passwordMember,String positionMember) throws Exception {
         System.out.println("Preparing to send email");
         Properties properties = new Properties();
 
@@ -202,7 +228,7 @@ public class Dashboard {
 
         //Prepare email message
 
-        Message message = prepareMessage(session, myAccountEmail, recepient, emailMember, passwordMember);
+        Message message = prepareMessage(session, myAccountEmail, recepient, emailMember, passwordMember, positionMember);
 
 
         //Send mail
@@ -214,13 +240,15 @@ public class Dashboard {
         }
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String emailMember, String passwordMember) {
+    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String emailMember, String passwordMember,String positionMember) {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("Welcome");
-            String htmlCode = "<h1>Welcome to our organazation</h1> <br/> <h3>Here is your email and password</h3> <br/> <h4>Email: "+emailMember+"</h4> <br/> <h4>Password: "+passwordMember+"</h4>";
+            String htmlCode = "<h1>Welcome to our organization</h1> <br/> <h3>Here is your email and password</h3> <br/> <h4>Username: "+emailMember+"</h4> <br/> <h4>Password: "+passwordMember+"</h4>"
+                    + "<br/> <h4>Position: "+positionMember+"</h4>" + "<br/> <h4>Thank you for joining us. Your position will serve as the secret to retrieve your password."+"</h4>"
+                    ;
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (MessagingException ex) {
@@ -240,7 +268,7 @@ public class Dashboard {
             if (option.get().equals(ButtonType.OK)) {
 
                 logout.getScene().getWindow().hide();
-                Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
 
@@ -272,43 +300,44 @@ public class Dashboard {
     }
     public void homeMemberTotalPresent() {
 
-//        String sql = "";
-//
-//        connect = database.connectDb();
-//        int countData = 0;
-//        try {
-//            statement = connect.createStatement();
-//            result = statement.executeQuery(sql);
-//
-//            while (result.next()) {
-//                countData = result.getInt("COUNT(id)");
-//            }
-//            home_totalPresents.setText(String.valueOf(countData));
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        String sql = "SELECT COUNT(*) FROM users WHERE status = 'Active'";
+
+        connect = database.connectDb();
+        int countData = 0;
+        try {
+            statement = connect.createStatement();
+            result = statement.executeQuery(sql);
+
+
+            while (result.next()) {
+                countData = result.getInt("COUNT(*)");
+            }
+            home_totalPresents.setText(String.valueOf(countData));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void homeTotalInactive() {
 
-        //String sql = "";
-//
-//        connect = database.connectDb();
-//        int countData = 0;
-//        try {
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            while (result.next()) {
-//                countData = result.getInt("COUNT(id)");
-//            }
-//            home_totalInactiveEm.setText(String.valueOf(countData));
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        String sql = "SELECT COUNT(*) FROM users WHERE status = 'Inactive'";
+
+        connect = database.connectDb();
+        int countData = 0;
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                countData = result.getInt("COUNT(*)");
+            }
+            home_totalInactiveEm.setText(String.valueOf(countData));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -319,8 +348,8 @@ public class Dashboard {
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
         String sql = "INSERT INTO member "
-                + "(member_id,firstName,lastName,gender,phoneNum,position,image,date) "
-                + "VALUES(?,?,?,?,?,?,?,?)";
+                + "(member_id,firstName,lastName,gender,phoneNum,position,image,date,email,username) "
+                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         connect = database.connectDb();
 
@@ -332,6 +361,7 @@ public class Dashboard {
                     || addMember_gender.getSelectionModel().getSelectedItem() == null
                     || addMember_phoneNum.getText().isEmpty()
                     || addMember_position.getSelectionModel().getSelectedItem() == null
+                    ||addMember_email.getText().isEmpty()
                     ) {
                 alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error Message");
@@ -369,19 +399,10 @@ public class Dashboard {
 
                     prepare.setString(7, uri);
                     prepare.setString(8, String.valueOf(sqlDate));
-                    prepare.executeUpdate();
+                    prepare.setString(9, addMember_email.getText());
+                    prepare.setString(10,getData.username);
 
-                    String insertInfo = "INSERT INTO member_info "
-                            + "(member_id,firstName,lastName,position,salary,date) "
-                            + "VALUES(?,?,?,?,?,?)";
 
-                    prepare = connect.prepareStatement(insertInfo);
-                    prepare.setString(1, addMember_MemberID.getText());
-                    prepare.setString(2, addMember_firstName.getText());
-                    prepare.setString(3, addMember_lastName.getText());
-                    prepare.setString(4, (String) addMember_position.getSelectionModel().getSelectedItem());
-                    prepare.setString(5, "0.0");
-                    prepare.setString(6, String.valueOf(sqlDate));
                     prepare.executeUpdate();
 
                     alert = new Alert(AlertType.INFORMATION);
@@ -389,18 +410,23 @@ public class Dashboard {
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Added!");
                     alert.showAndWait();
-                    String insertUser = "INSERT INTO user "
-                            + "(user_id,email,password,username,image) "
-                            + "VALUES(?,?,?,?,?)";
+                    String insertUser = "INSERT INTO users "
+                            + "(id,email,password,username,question,answer,date,update_date) "
+                            + "VALUES(?,?,?,?,?,?,?,?)";
 
                     prepare = connect.prepareStatement(insertUser);
                     prepare.setString(1, addMember_MemberID.getText());
-                    prepare.setString(2, addMember_firstName.getText());
-                    prepare.setString(3, addMember_lastName.getText());
-                    prepare.setString(4, (String) addMember_position.getSelectionModel().getSelectedItem());
-                    prepare.setString(5, "0.0");
+                    prepare.setString(2, addMember_email.getText());
+                    prepare.setString(3, addMember_phoneNum.getText());
+                    prepare.setString(4, (String) addMember_firstName.getText());
+                    prepare.setString(5, "What is your position in your organzation?");
+                    prepare.setString(6, (String) addMember_position.getSelectionModel().getSelectedItem());
+                    prepare.setString(7, String.valueOf(sqlDate));
+                    prepare.setString(8, String.valueOf(sqlDate));
+
                     prepare.executeUpdate();
-                    sendMail("yasmine.souissi@esprit.tn", addMember_firstName.getText(), addMember_lastName.getText());
+                    sendMail(addMember_email.getText(), addMember_firstName.getText(), addMember_phoneNum.getText(),
+                            addMember_position.getSelectionModel().getSelectedItem().toString());
                     addMemberShowListData();
                     addMemberReset();
                 }
@@ -564,30 +590,12 @@ public class Dashboard {
     }
 
 
-    private String[] positionList = {"President", "Vice President", "Member", "TL"};
-
     public void addMemberPositionList() {
-        List<String> listP = new ArrayList<>();
-
-        for (String data : positionList) {
-            listP.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listP);
-        addMember_position.setItems(listData);
+        addMember_position.getItems().addAll("Manager", "Supervisor", "Team Lead","President", "Vice President", "Member"); // Add the items to the ComboBox
     }
 
-    private String[] listGender = {"Male", "Female", "Others"};
-
     public void addMemberGendernList() {
-        List<String> listG = new ArrayList<>();
-
-        for (String data : listGender) {
-            listG.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listG);
-        addMember_gender.setItems(listData);
+        addMember_gender.getItems().addAll("Male", "Female", "Others"); // Add the items to the ComboBox
     }
 
     public void addMemberSearch() {
@@ -621,7 +629,7 @@ public class Dashboard {
     public ObservableList<User> addMemberListData() {
 
         ObservableList<User> listData = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM member";
+        String sql = "SELECT * FROM member WHERE username = '" + getData.username + "'";
 
         connect = database.connectDb();
 
@@ -677,17 +685,14 @@ public class Dashboard {
         addMember_firstName.setText(memberD.getFirstName());
         addMember_lastName.setText(memberD.getLastName());
         addMember_phoneNum.setText(memberD.getPhoneNum());
+        addMember_position.setValue(memberD.getPosition());
+        addMember_gender.setValue(memberD.getGender());
 
         getData.path = memberD.getImage();
-
         String uri = "file:" + memberD.getImage();
-
-
         image = new Image(uri, 101, 127, false, true);
         addMember_image.setImage(image);
     }
-
-
 
     public void defaultNav() {
         home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
@@ -695,6 +700,25 @@ public class Dashboard {
 
     public void displayUsername() {
         username.setText(getData.username);
+    }
+
+    public void displayUserInfo() {
+        String sql = "SELECT * FROM user_info WHERE username = '" + getData.username + "'";
+
+        connect = database.connectDb();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            // if the username is found in the database get all the information
+            if(result.next()){
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void switchForm(ActionEvent event) {
@@ -766,6 +790,7 @@ public class Dashboard {
         homeTotalMembers();
         homeMemberTotalPresent();
         homeTotalInactive();
+        homeChart();
 
         addMemberShowListData();
         addMemberGendernList();

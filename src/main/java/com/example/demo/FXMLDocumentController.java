@@ -138,12 +138,13 @@ public class FXMLDocumentController implements Initializable {
 
         // CHECK IF ALL OR SOME OF THE FIELDS ARE EMPTY
         if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
-            alert.errorMessage("Incorrect Username/Password");
+            alert.errorMessage("Incorrect username/Password");
         } else {
-            String selectData = "SELECT * FROM user WHERE "
-                    + "username = ? and password = ?"; // user IS OUR TABLE NAME
+            String selectData = "SELECT * FROM users WHERE "
+                    + "username = ? and password = ?"; // users IS OUR TABLE NAME
 
             connect = database.connectDb();
+            getData.username = login_username.getText();
             
             if(login_selectShowPassword.isSelected()){
                 login_password.setText(login_showPassword.getText());
@@ -159,14 +160,23 @@ public class FXMLDocumentController implements Initializable {
                 result = prepare.executeQuery();
 
                 if (result.next()) {
-                    // ONCE ALL DATA THAT user INSERT ARE CORRECT, THEN WE WILL PROCEED TO OUR MAIN FORM
+                    // ONCE ALL DATA THAT users INSERT ARE CORRECT, THEN WE WILL PROCEED TO OUR MAIN FORM
+                    // update status to active
+                    if(!result.getString("status").equals("Active")){
+                        String updateData = "UPDATE users SET status = ? WHERE username = ? and password = ?";
+                        prepare = connect.prepareStatement(updateData);
+                        prepare.setString(1, "Active");
+                        prepare.setString(2, login_username.getText());
+                        prepare.setString(3, login_password.getText());
+                        prepare.executeUpdate();
+                    }
 
                     alert.successMessage("Successfully Login!");
                     // TO LINK THE MAIN FORM
                     Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
-                    
+
                     stage.setScene(scene);
                     // TO SHOW OUR MAIN FORM
                     stage.show();
@@ -176,7 +186,7 @@ public class FXMLDocumentController implements Initializable {
                     
                 } else {
                     // ELSE, THEN ERROR MESSAGE WILL APPEAR
-                    alert.errorMessage("Incorrect Username/Password");
+                    alert.errorMessage("Incorrect username/Password");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -208,7 +218,7 @@ public class FXMLDocumentController implements Initializable {
             alert.errorMessage("Please fill all blank fields");
         } else {
 
-            String checkData = "SELECT username, question, answer FROM user "
+            String checkData = "SELECT username, question, answer FROM users "
                     + "WHERE username = ? AND question = ? AND answer = ?";
 
             connect = database.connectDb();
@@ -271,21 +281,21 @@ public class FXMLDocumentController implements Initializable {
             //, WE WILL CHECK THE CHARACTERS OF PASSWORD 
             alert.errorMessage("Invalid Password, at least 8 characters needed");
         } else {
-            // CHECK IF THE USERNAME IS ALREADY TAKEN
-            String checkUsername = "SELECT * FROM user WHERE username = '"
+            // CHECK IF THE userNAME IS ALREADY TAKEN
+            String checkusername = "SELECT * FROM users WHERE username = '"
                     + signup_username.getText() + "'";
             connect = database.connectDb();
             try {
                 statement = connect.createStatement();
-                result = statement.executeQuery(checkUsername);
+                result = statement.executeQuery(checkusername);
 
                 if (result.next()) {
                     alert.errorMessage(signup_username.getText() + " is already taken");
                 } else {
 
-                    String insertData = "INSERT INTO user "
-                            + "(email, username, password, question, answer, date) "
-                            + "VALUES(?,?,?,?,?,?)"; // FIVE (?)
+                    String insertData = "INSERT INTO users "
+                            + "(email, username, password, question, answer, date,update_date) "
+                            + "VALUES(?,?,?,?,?,?,?)"; // FIVE (?)
 
                     prepare = connect.prepareStatement(insertData);
                     prepare.setString(1, signup_email.getText());
@@ -299,6 +309,7 @@ public class FXMLDocumentController implements Initializable {
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
                     prepare.setString(6, String.valueOf(sqlDate));
+                    prepare.setString(7, String.valueOf(sqlDate));
 
                     prepare.executeUpdate();
 
@@ -338,8 +349,8 @@ public class FXMLDocumentController implements Initializable {
             // CHECK IF THE LENGTH OF PASSWORD IS LESS THAN TO 8
             alert.errorMessage("Invalid Password, at least 8 characters needed");
         }else{
-            // USERNAME IS OUR REFERENCE TO UPDATE THE DATA OF THE USER
-            String updateData = "UPDATE user SET password = ?, update_date = ? "
+            // userNAME IS OUR REFERENCE TO UPDATE THE DATA OF THE users
+            String updateData = "UPDATE users SET password = ?, update_date = ? "
                     + "WHERE username = '" + forgot_username.getText() + "'";
 
             connect = database.connectDb();
@@ -420,6 +431,11 @@ public class FXMLDocumentController implements Initializable {
         ObservableList listData = FXCollections.observableArrayList(listQ);
         signup_selectQuestion.setItems(listData);
     }
+
+    public void close(){
+        System.exit(0);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
