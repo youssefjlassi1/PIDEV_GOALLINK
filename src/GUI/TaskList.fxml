@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="658.0" prefWidth="1050.0" stylesheets="@AddTournamentStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MatchListController">
+<AnchorPane prefHeight="658.0" prefWidth="1050.0" stylesheets="@AddTournamentStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TaskListController">
     <TableView fx:id="matchTable" layoutX="44.0" layoutY="214.0" prefHeight="300.0" prefWidth="963.0">
         <columns>
             <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="0.0" text="ID" />

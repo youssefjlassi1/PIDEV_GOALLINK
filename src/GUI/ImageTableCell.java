@@ -9,12 +9,12 @@ package GUI;
 import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import entites.Tournament;
+import entites.Project;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class ImageTableCell extends TableCell<Tournament, String> {
+public class ImageTableCell extends TableCell<Project, String> {
 
     private final ImageView imageView;
 

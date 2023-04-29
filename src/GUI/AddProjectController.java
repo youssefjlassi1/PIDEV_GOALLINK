@@ -6,7 +6,7 @@
 package GUI;
 
 import entites.Project;
-import entites.Tournament;
+import entites.Project;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -75,13 +75,13 @@ private void selectPhoto(ActionEvent event) {
 @FXML
 private void goBack(ActionEvent event) {
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TournamentList.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectList.fxml"));
         Parent root = loader.load();
         ProjectListController controller = loader.getController();
         Stage stage = (Stage) Name.getScene().getWindow();
         stage.setScene(new Scene(root));
     } catch (IOException ex) {
-        System.out.println("Error loading tournament list: " + ex.getMessage());
+        System.out.println("Error loading Project list: " + ex.getMessage());
     }
 }
 
@@ -110,7 +110,7 @@ private void Ajouter(ActionEvent event) {
   
   
      if (description.isEmpty() || description.length()<7 ){
-        showAlert("Error", "Description is required", "Please enter a Valid description for the tournament");
+        showAlert("Error", "Description is required", "Please enter a Valid description for the Project");
         return;
     }
 
@@ -123,7 +123,7 @@ private void Ajouter(ActionEvent event) {
     ServiceProject t= new ServiceProject();
     t.Ajouter2(p);
     
-    // show alert when tournament is added successfully
+    // show alert when Project is added successfully
     Alert alert = new Alert(AlertType.INFORMATION);
     alert.setTitle("Success");
     alert.setHeaderText(null);
@@ -132,13 +132,13 @@ private void Ajouter(ActionEvent event) {
 
     // go back to ProjectList.fxml
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TournamentList.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectList.fxml"));
         Parent root = loader.load();
         ProjectListController controller = loader.getController();
         Stage stage = (Stage) Name.getScene().getWindow();
         stage.setScene(new Scene(root));
     } catch (IOException ex) {
-        System.out.println("Error loading tournament list: " + ex.getMessage());
+        System.out.println("Error loading Project list: " + ex.getMessage());
     }
 }
 

@@ -136,10 +136,10 @@ private void searchProjects(KeyEvent event) {
             editButton.setOnAction((ActionEvent event) -> {
                 try {
                     Project tournament = getTableView().getItems().get(getIndex());
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("EditTournament.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("EditProject.fxml"));
                     Parent root = loader.load();
-                    EditTournamentController controller = loader.getController();
-                    controller.setTournament(tournament);
+                    EditProjectController controller = loader.getController();
+                    controller.setProject(tournament);
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
                     stage.show();
@@ -167,12 +167,12 @@ shareColumn.setCellFactory(column -> {
             shareButton.setOnAction((ActionEvent event) -> {
                 Project tournament = getTableView().getItems().get(getIndex());
                 
-         String accessToken = "EAACRyMBXvYEBAIZANIAzuJZCcAz8pb8ZApCFSefE2V6tZCHPpyvFqNXwCECyL8ZANKgxlRal0l8acKWhLo61LjIqjPGZAFIqn0l1MgV1fbMzaXX2sn2XsUXZA9FJS6KTQmeFx3LgUsX8haWjdfLAeLtQEEhv3QatCIlZBel1ZCcCmZCoIhXQlACaniIoIiZB4FMjb3mcdcatlBgpjgAXSPnRExz";
+         String accessToken = "EAAJLcPJS6AABAA2AMOOC5d4pWo9JOtAPjkQqYy4l1aowZBAr2JiDn6Y7UCZBpwvKIupQAsbDUT1FKMNkvZBaDbvA0y9sgYYTwdpasAxMACiYny30ocuddUFog2ExZBIZAz2fATnnby4vPkmiBXJoZCSUVeYZBRTGjZBTlZAe1mLAATrlKL5u22bv9ZBnNdK8X0yZCuA5d6Qa9xJZCLwLO5JAVLuC";
         
          FacebookClient client = new DefaultFacebookClient(accessToken);
 
                 try {
-                    FacebookType response = client.publish("116954624708499" + "/photos", FacebookType.class,
+                    FacebookType response = client.publish("560249696244896" + "/photos", FacebookType.class,
                             BinaryAttachment.with("C:\\0.jpg", new FileInputStream(new File(tournament.getImage()))),
                             Parameter.with("message", tournament.getDescription()));
                 } catch (FileNotFoundException ex) {

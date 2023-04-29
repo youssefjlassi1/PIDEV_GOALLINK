@@ -38,9 +38,9 @@ public class EditProjectController implements Initializable {
     
     
     private String photoPath;
-    private Project tournament;
+    private Project Project;
     
-    private ServiceProject tournamentCrud;
+    private ServiceProject ProjectCrud;
     
     @FXML
 private void selectPhoto(ActionEvent event) {
@@ -55,20 +55,20 @@ private void selectPhoto(ActionEvent event) {
 }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tournamentCrud = new ServiceProject();
+        ProjectCrud = new ServiceProject();
     }
 
-   public void setTournament(Project tournament) {
-    if (tournament != null) {
-        this.tournament = tournament;
+   public void setProject(Project Project) {
+    if (Project != null) {
+        this.Project = Project;
 
         // populate fields with existing data
-        nameTextField.setText(tournament.getName());
-        descriptionTextArea.setText(tournament.getDescription());
-        prizeTextField.setText(tournament.getTheme());
+        nameTextField.setText(Project.getName());
+        descriptionTextArea.setText(Project.getDescription());
+        prizeTextField.setText(Project.getTheme());
     
        
-        photoPath = tournament.getImage();
+        photoPath = Project.getImage();
         javafx.scene.image.Image image = new javafx.scene.image.Image(new File(photoPath).toURI().toString());
         Photo.setImage(image);}
    
@@ -76,13 +76,13 @@ private void selectPhoto(ActionEvent event) {
     @FXML
 private void goBack(ActionEvent event) {
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TournamentList.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectList.fxml"));
         Parent root = loader.load();
         ProjectListController controller = loader.getController();
         Stage stage = (Stage) nameTextField.getScene().getWindow();
         stage.setScene(new Scene(root));
     } catch (IOException ex) {
-        System.out.println("Error loading tournament list: " + ex.getMessage());
+        System.out.println("Error loading Project list: " + ex.getMessage());
     }
 }
 
@@ -91,35 +91,35 @@ private void handleSaveButton() {
     // Validate input
     String name = nameTextField.getText().trim();
     if (name.isEmpty()) {
-        showAlert("Error", "Name is required", "Please enter a name for the tournament");
+        showAlert("Error", "Name is required", "Please enter a name for the Project");
         return;
     }
     
     String description = descriptionTextArea.getText().trim();
     if (description.isEmpty()) {
-        showAlert("Error", "Description is required", "Please enter a description for the tournament");
+        showAlert("Error", "Description is required", "Please enter a description for the Project");
         return;
     }
     
     String prize = prizeTextField.getText().trim();
     if (prize.isEmpty()) {
-        showAlert("Error", "Prize is required", "Please enter a prize for the tournament");
+        showAlert("Error", "Prize is required", "Please enter a prize for the Project");
         return;
     }
     
     
     
-    // update tournament object with new data
-    tournament.setName(name);
-    tournament.setDescription(description);
-    tournament.setTheme(prize);
-    tournament.setImage(photoPath);
+    // update Project object with new data
+    Project.setName(name);
+    Project.setDescription(description);
+    Project.setTheme(prize);
+    Project.setImage(photoPath);
    
     
-    // update tournament in database
-    tournamentCrud.Modifier(tournament);
+    // update Project in database
+    ProjectCrud.Modifier(Project);
 
-    // switch to tournament list view
+    // switch to Project list view
     try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectList.fxml"));
         Parent root = loader.load();
@@ -127,7 +127,7 @@ private void handleSaveButton() {
         Stage stage = (Stage) nameTextField.getScene().getWindow();
         stage.setScene(new Scene(root));
     } catch (IOException ex) {
-        System.out.println("Error loading tournament list: " + ex.getMessage());
+        System.out.println("Error loading Project list: " + ex.getMessage());
     }
 }
 
@@ -140,7 +140,7 @@ private void handleSaveButton() {
         Stage stage = (Stage) nameTextField.getScene().getWindow();
         stage.setScene(new Scene(root));
     } catch (IOException ex) {
-        System.out.println("Error loading tournament list: " + ex.getMessage());
+        System.out.println("Error loading Project list: " + ex.getMessage());
     }
         
     }

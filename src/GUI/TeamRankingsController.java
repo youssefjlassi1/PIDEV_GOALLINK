@@ -35,7 +35,7 @@ public class TeamRankingsController implements Initializable {
     @FXML
     private TableColumn<RankingTableRow, Integer> winsColumn;
 
-    private List<Match> matchList;
+    private List<Match> TaskList;
 
     private List<Tournament> tournamentList;
 
@@ -58,7 +58,7 @@ public class TeamRankingsController implements Initializable {
         Map<String, Integer> teamWinsMap = new HashMap<>();
 
         // Loop through all the matches and count the wins for each team
-        matchList.stream().map((match) -> match.getMatchwinner()).filter((winner) -> (winner != null && !winner.isEmpty())).forEachOrdered((winner) -> {
+        TaskList.stream().map((match) -> match.getMatchwinner()).filter((winner) -> (winner != null && !winner.isEmpty())).forEachOrdered((winner) -> {
             int wins = teamWinsMap.getOrDefault(winner, 0);
             teamWinsMap.put(winner, wins + 1);
         });
@@ -98,8 +98,8 @@ public class TeamRankingsController implements Initializable {
     /**
      * Sets the list of matches for this controller.
      */
-    public void setMatchList(List<Match> matchList) {
-        this.matchList = matchList;
+    public void setTaskList(List<Match> TaskList) {
+        this.TaskList = TaskList;
     }
 
     /**

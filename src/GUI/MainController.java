@@ -30,7 +30,7 @@ public class MainController implements Initializable {
         // TODO
     } 
     @FXML
-    private void handleTournamenttButton() {
+    private void handleTournamentButton() {
     try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectList.fxml"));
         Parent root = loader.load();
@@ -44,7 +44,7 @@ public class MainController implements Initializable {
     @FXML
      private void handleMatchtButton() {
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MatchList.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TaskList.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

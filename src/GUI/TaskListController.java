@@ -42,7 +42,7 @@ import javafx.scene.control.TableCell;
  *
  * @author Gamer
  */
-public class MatchListController implements Initializable {
+public class TaskListController implements Initializable {
     
     
     @FXML
@@ -66,7 +66,7 @@ public class MatchListController implements Initializable {
     @FXML
 private void handleAddButton() {
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddMatch.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTask.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -90,7 +90,7 @@ private void handleAddButton() {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("Status"));
         
         
-   //editMatch
+   //EditTask
     
         editColumn.setCellFactory(column -> {
     return new TableCell<Task, Void>() {
@@ -100,9 +100,9 @@ private void handleAddButton() {
             editButton.setOnAction((ActionEvent event) -> {
                 try {
                     Task match = getTableView().getItems().get(getIndex());
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("EditMatch.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("EditTask.fxml"));
                     Parent root = loader.load();
-                    EditMatchController controller = loader.getController();
+                    EditTaskController controller = loader.getController();
                     controller.setMatch(match);
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));

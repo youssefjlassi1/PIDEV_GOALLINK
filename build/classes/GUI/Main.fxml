@@ -21,8 +21,8 @@
     <VBox id="navbar">
         <HBox prefHeight="66.0" prefWidth="800.0" />
        <AnchorPane id="content" cache="true" depthTest="DISABLE" prefHeight="653.0" prefWidth="983.0" stylesheets="@style.css">
-           <Button id="tournamentButton" fx:id="TournamentList" layoutX="392.0" layoutY="175.0" onAction="#handleTournamenttButton" prefHeight="17.0" prefWidth="136.0" text="Projects List" />
-           <Button id="matchButton" fx:id="MatchList" layoutX="392.0" layoutY="250.0" onAction="#handleMatchtButton" text="Task List" />
+           <Button id="tournamentButton" fx:id="TournamentList" layoutX="392.0" layoutY="175.0" onAction="#handleTournamentButton" prefHeight="17.0" prefWidth="136.0" text="Projects List" />
+           <Button id="matchButton" fx:id="TaskList" layoutX="392.0" layoutY="250.0" onAction="#handleMatchtButton" text="Task List" />
            <MenuBar id="menuBar" layoutX="-275.0" layoutY="65.0">
                <Menu text="Lists">
                    <MenuItem text="Tournament List" />

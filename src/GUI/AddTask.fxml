@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="808.0" prefWidth="809.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddMatchController">
+<AnchorPane prefHeight="808.0" prefWidth="809.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddTaskController">
    <children>
       
       <Label layoutX="89.0" layoutY="91.0" prefHeight="17.0" prefWidth="50.0" stylesheets="@AddTournamentStyle.css" text="Name" />

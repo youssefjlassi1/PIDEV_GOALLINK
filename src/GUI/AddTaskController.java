@@ -41,13 +41,13 @@ import services.ServiceProject;
  *
  * @author Gamer
  */
-public class AddMatchController implements Initializable {
+public class AddTaskController implements Initializable {
     
   
     
     
    
-    private ServiceProject tournament1;
+    private ServiceProject Project1;
     @FXML
     private TextField Name;
     @FXML
@@ -56,13 +56,17 @@ public class AddMatchController implements Initializable {
     private TextField Status;
     @FXML
     private ChoiceBox<Project> ProjectChoiceBox;
+    @FXML
+    private ImageView Photo;
+    @FXML
+    private ImageView Photo1;
 
    @Override
    public void initialize(URL url, ResourceBundle rb) {
-    // Populate the tournament choice box
-    tournament1 = new ServiceProject();
-    List<Project> tournaments = tournament1.Afficher();
-    ProjectChoiceBox.getItems().addAll(tournaments);
+    // Populate the Project choice box
+    Project1 = new ServiceProject();
+    List<Project> Projects = Project1.Afficher();
+    ProjectChoiceBox.getItems().addAll(Projects);
 }
 
 //private void selectPhoto(ActionEvent event) {
@@ -120,7 +124,7 @@ private void Ajouter(ActionEvent event) {
     ServiceTask t= new ServiceTask();
     t.Ajouter2(p);
     
-    // show alert when tournament is added successfully
+    // show alert when Project is added successfully
     Alert alert = new Alert(AlertType.INFORMATION);
     alert.setTitle("Success");
     alert.setHeaderText(null);
@@ -129,9 +133,9 @@ private void Ajouter(ActionEvent event) {
 
     // go back to TaskList.fxml
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MatchList.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TaskList.fxml"));
         Parent root = loader.load();
-        MatchListController controller = loader.getController();
+        TaskListController controller = loader.getController();
        // Stage stage = (Stage) name.getScene().getWindow();
        // stage.setScene(new Scene(root));
     } catch (IOException ex) {

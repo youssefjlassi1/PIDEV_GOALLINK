@@ -177,7 +177,7 @@ public class ServiceProject  implements IService<Project>{
     public Project getProdbyN(String produit) {
             Project t = new Project();         
     try {
-        String query = "SELECT * FROM tournament WHERE name = ?";
+        String query = "SELECT * FROM Project WHERE name = ?";
          ServiceProject cat = new ServiceProject();
          
         PreparedStatement pre = con.prepareStatement(query);

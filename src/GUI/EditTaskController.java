@@ -37,7 +37,7 @@ import services.ServiceTask;
  *
  * @author Gamer
  */
-public class EditMatchController implements Initializable {
+public class EditTaskController implements Initializable {
    
     
     
@@ -81,9 +81,9 @@ public class EditMatchController implements Initializable {
      @FXML
 private void goBack(ActionEvent event) {
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MatchList.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TaskList.fxml"));
         Parent root = loader.load();
-        MatchListController controller = loader.getController();
+        TaskListController controller = loader.getController();
       //  Stage stage = (Stage) Team1.getScene().getWindow();
        // stage.setScene(new Scene(root));
     } catch (IOException ex) {
@@ -146,20 +146,20 @@ private void handleSaveButton() {
     
     
     
-    // update tournament object with new data
+    // update Project object with new data
     match.setName(name);
     match.setDescription(description);
     match.setStatus(status);
   
     
-    // update tournament in database
+    // update Project in database
     matchCrud.Modifier(match);
 
-    // switch to tournament list view
+    // switch to Project list view
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MatchList.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TaskList.fxml"));
         Parent root = loader.load();
-        MatchListController controller = loader.getController();
+        TaskListController controller = loader.getController();
       Stage stage = (Stage) Name.getScene().getWindow();
         stage.setScene(new Scene(root));
     } catch (IOException ex) {
@@ -167,7 +167,7 @@ private void handleSaveButton() {
     }
 }
 
-    private void showAlert(String error, String name_is_required, String please_enter_a_name_for_the_tournament) {
+    private void showAlert(String error, String name_is_required, String please_enter_a_name_for_the_Project) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

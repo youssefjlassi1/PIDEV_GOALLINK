@@ -8,8 +8,8 @@ package tests;
 import entites.Match;
 import entites.Tournament;
 import java.time.LocalDateTime;
-import services.CRUDMatch;
-import services.CRUDTournament;
+import services.ServiceTask;
+import services.ServiceProject;
 import utils.MyDB;
 
 /**
@@ -38,8 +38,8 @@ public class Workshop3A34 {
        // per.ajouterTournament(tournament);
        
         
-        CRUDMatch t = new CRUDMatch();
-        t.afficherMatch();
+        ServiceTask t = new ServiceTask();
+        t.Afficher();
        
     }
     
