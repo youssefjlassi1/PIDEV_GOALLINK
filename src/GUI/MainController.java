@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -21,6 +23,15 @@ import javafx.stage.Stage;
  * @author Gamer
  */
 public class MainController implements Initializable {
+
+    @FXML
+    private Button TournamentList;
+    @FXML
+    private Button TaskList;
+    @FXML
+    private Button Calendar;
+    @FXML
+    private Text text;
 
     /**
      * Initializes the controller class.
@@ -65,7 +76,6 @@ public class MainController implements Initializable {
         System.out.println("Error loading add tournament form: " + ex.getMessage());
     }
 }
-     @FXML
      private void handleLeagueButton() {
     try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TopPlayers.fxml"));
@@ -77,7 +87,6 @@ public class MainController implements Initializable {
         System.out.println("Error loading add tournament form: " + ex.getMessage());
     }
 }
-     @FXML
      private void handleHomeButton() {
     try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TournamentsHomePage.fxml"));
