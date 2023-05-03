@@ -10,9 +10,11 @@ public class User {
     private String position;
     private String image;
     private Date date;
+
+    private String email;
     private Double salary;
 
-    public User(Integer memberId, String firstName, String lastName, String gender, String phoneNum, String position, String image, Date date){
+    public User(Integer memberId, String firstName, String lastName, String gender, String phoneNum, String position, String image, Date date, String email){
         this.memberId = memberId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,14 +23,9 @@ public class User {
         this.position = position;
         this.image = image;
         this.date = date;
+        this.email = email;
     }
-    public User(Integer memberId, String firstName, String lastName,String position, Double salary){
-        this.memberId = memberId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.position = position;
-        this.salary = salary;
-    }
+
 
     public Integer getMemberId(){
         return memberId;
@@ -51,10 +48,20 @@ public class User {
     public String getImage(){
         return image;
     }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
     public Date getDate(){
         return date;
     }
     public Double getSalary(){
         return salary;
     }
+
+
 }

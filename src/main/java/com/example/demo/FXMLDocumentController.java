@@ -419,7 +419,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private String[] questionList = {"What is your favorite food?", "What is your favorite color?",
-        "What is the name of your pet?", "What is your most favorite sport?"};
+        "What is the name of your pet?", "What is your most favorite sport?",
+            "What is your position in your organzation?"};
 
     public void questions() {
         List<String> listQ = new ArrayList<>();

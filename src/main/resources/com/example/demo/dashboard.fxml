@@ -71,12 +71,7 @@
                                                 <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
                                             </graphic>
                                         </Button>
-                                        <Button fx:id="edit_btn" layoutX="16.0" layoutY="242.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Edit Profile">
-                                            <graphic>
-                                                <FontAwesomeIcon fill="WHITE" glyphName="PEN" size="1.5em" />
-                                            </graphic>
-                                        </Button>
-                                        <Button fx:id="addMember_btn" layoutX="16.0" layoutY="278.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Manage Member">
+                                        <Button fx:id="addMember_btn" layoutX="16.0" layoutY="242.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Manage Member">
                                             <graphic>
                                                 <FontAwesomeIcon fill="WHITE" glyphName="PLUS" size="1.5em" />
                                             </graphic>
@@ -195,6 +190,8 @@
                                                                 <TableColumn fx:id="addMember_col_phoneNum" prefWidth="125.0" text="Phone #" />
                                                                 <TableColumn fx:id="addMember_col_position" prefWidth="154.0" text="Position" />
                                                                 <TableColumn fx:id="addMember_col_date" prefWidth="139.0" text="Date Member" />
+                                                                <TableColumn fx:id="addMember_col_mail" prefWidth="139.0" text="Email" />
+
                                                             </columns>
                                                         </TableView>
                                                         <TextField fx:id="addMember_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#addMemberSearch" prefHeight="30.0" prefWidth="277.0" promptText="Seach" styleClass="search" stylesheets="@dashboardDesign.css" />

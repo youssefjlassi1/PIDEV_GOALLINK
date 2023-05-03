@@ -62,8 +62,7 @@ public class Dashboard {
     @FXML
     private Button addMember_btn;
 
-    @FXML
-    private Button edit_btn;
+
 
 
     @FXML
@@ -114,6 +113,9 @@ public class Dashboard {
 
     @FXML
     private TableColumn<User, String> addMember_col_date;
+
+    @FXML
+    private TableColumn<User, String> addMember_col_mail;
 
     @FXML
     private TextField addMember_search;
@@ -246,9 +248,7 @@ public class Dashboard {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("Welcome");
-            String htmlCode = "<h1>Welcome to our organization</h1> <br/> <h3>Here is your email and password</h3> <br/> <h4>Username: "+emailMember+"</h4> <br/> <h4>Password: "+passwordMember+"</h4>"
-                    + "<br/> <h4>Position: "+positionMember+"</h4>" + "<br/> <h4>Thank you for joining us. Your position will serve as the secret to retrieve your password."+"</h4>"
-                    ;
+            String htmlCode = "<h1>Donation added succesfully</h1> <br/>";
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (MessagingException ex) {
@@ -300,7 +300,11 @@ public class Dashboard {
     }
     public void homeMemberTotalPresent() {
 
-        String sql = "SELECT COUNT(*) FROM users WHERE status = 'Active'";
+     String sql = "SELECT COUNT(*) FROM users WHERE status = 'Active'";
+
+
+
+
 
         connect = database.connectDb();
         int countData = 0;
@@ -451,7 +455,7 @@ public class Dashboard {
                 + addMember_lastName.getText() + "', gender = '"
                 + addMember_gender.getSelectionModel().getSelectedItem() + "', phoneNum = '"
                 + addMember_phoneNum.getText() + "', position = '"
-                + addMember_position.getSelectionModel().getSelectedItem() + "', image = '"
+                + addMember_position.getSelectionModel().getSelectedItem() + "', image = '"+"' email='"+addMember_email.getText()
                 + uri + "', date = '" + sqlDate + "' WHERE member_id ='"
                 + addMember_MemberID.getText() + "'";
 
@@ -482,27 +486,8 @@ public class Dashboard {
                     statement = connect.createStatement();
                     statement.executeUpdate(sql);
 
-                    double salary = 0;
 
-                    String checkData = "SELECT * FROM member_info WHERE member_id = '"
-                            + addMember_MemberID.getText() + "'";
 
-                    prepare = connect.prepareStatement(checkData);
-                    result = prepare.executeQuery();
-
-                    while (result.next()) {
-                        salary = result.getDouble("salary");
-                    }
-
-                    String updateInfo = "UPDATE member_info SET firstName = '"
-                            + addMember_firstName.getText() + "', lastName = '"
-                            + addMember_lastName.getText() + "', position = '"
-                            + addMember_position.getSelectionModel().getSelectedItem()
-                            + "' WHERE member_id = '"
-                            + addMember_MemberID.getText() + "'";
-
-                    prepare = connect.prepareStatement(updateInfo);
-                    prepare.executeUpdate();
 
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Message");
@@ -555,11 +540,6 @@ public class Dashboard {
                     statement = connect.createStatement();
                     statement.executeUpdate(sql);
 
-                    String deleteInfo = "DELETE FROM member_info WHERE member_id = '"
-                            + addMember_MemberID.getText() + "'";
-
-                    prepare = connect.prepareStatement(deleteInfo);
-                    prepare.executeUpdate();
 
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Message");
@@ -611,7 +591,6 @@ public class Dashboard {
                 }
 
                 String searchKey = newValue.toLowerCase();
-
                if (predicateUser.getFirstName().toLowerCase().contains(searchKey)) {
                     return true;
                } else {
@@ -646,7 +625,10 @@ public class Dashboard {
                         result.getString("phoneNum"),
                         result.getString("position"),
                         result.getString("image"),
-                        result.getDate("date"));
+                        result.getDate("date"),
+                        result.getString("email")
+                        );
+
                 listData.add(memberD);
 
             }
@@ -668,12 +650,14 @@ public class Dashboard {
         addMember_col_phoneNum.setCellValueFactory(new PropertyValueFactory<>("phoneNum"));
         addMember_col_position.setCellValueFactory(new PropertyValueFactory<>("position"));
         addMember_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        addMember_col_mail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         addMember_tableView.setItems(addMemberList);
 
     }
 
-    public void addMemberSelect() {
+    public void addMemberSelect()
+    {
         User memberD = addMember_tableView.getSelectionModel().getSelectedItem();
         int num = addMember_tableView.getSelectionModel().getSelectedIndex();
 
@@ -687,6 +671,7 @@ public class Dashboard {
         addMember_phoneNum.setText(memberD.getPhoneNum());
         addMember_position.setValue(memberD.getPosition());
         addMember_gender.setValue(memberD.getGender());
+        addMember_email.setText(memberD.getEmail());
 
         getData.path = memberD.getImage();
         String uri = "file:" + memberD.getImage();
@@ -725,16 +710,13 @@ public class Dashboard {
 
         if (event.getSource() == home_btn) {
             home_form.setVisible(true);
-            edit_form.setVisible(false);
             addMember_form.setVisible(false);
 
             home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
             addMember_btn.setStyle("-fx-background-color:transparent");
-            edit_btn.setStyle("-fx-background-color:transparent");
 
         } else if (event.getSource() == addMember_btn) {
             home_form.setVisible(false);
-            edit_form.setVisible(false);
             addMember_form.setVisible(true);
 
             addMember_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
@@ -743,14 +725,6 @@ public class Dashboard {
             addMemberGendernList();
             addMemberPositionList();
             addMemberSearch();
-
-        }else if (event.getSource() == edit_btn) {
-            home_form.setVisible(false);
-            addMember_form.setVisible(false);
-            edit_form.setVisible(true);
-            edit_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
-            home_btn.setStyle("-fx-background-color:transparent");
-            addMember_btn.setStyle("-fx-background-color:transparent");
 
         }
 
