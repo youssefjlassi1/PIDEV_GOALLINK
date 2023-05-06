@@ -73,34 +73,26 @@ public class ShowAllController implements Initializable {
             DonationUser donationUser
     ) {
         Parent parent = null;
-        try {
-            parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constants.FXML_BACK_MODEL_DONATION_USER)));
-
-            HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
-            ((Text) innerContainer.lookup("#userText")).setText("User : " + donationUser.getUser());
-            ((Text) innerContainer.lookup("#amountText")).setText("Amount : " + donationUser.getAmount());
-            ((Text) innerContainer.lookup("#dateText")).setText("Date : " + donationUser.getDate());
-
-
-            ((Button) innerContainer.lookup("#editButton")).setOnAction((event) -> modifierDonationUser(donationUser));
-            ((Button) innerContainer.lookup("#deleteButton")).setOnAction((event) -> supprimerDonationUser(donationUser));
-
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        //parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constants.FXML_BACK_MODEL_DONATION_USER)));
+        
+        HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
+        ((Text) innerContainer.lookup("#userText")).setText("User : " + donationUser.getUser());
+        ((Text) innerContainer.lookup("#amountText")).setText("Amount : " + donationUser.getAmount());
+        ((Text) innerContainer.lookup("#dateText")).setText("Date : " + donationUser.getDate());
+        ((Button) innerContainer.lookup("#editButton")).setOnAction((event) -> modifierDonationUser(donationUser));
+        ((Button) innerContainer.lookup("#deleteButton")).setOnAction((event) -> supprimerDonationUser(donationUser));
         return parent;
     }
 
     @FXML
     private void ajouterDonationUser(ActionEvent ignored) {
         currentDonationUser = null;
-        MainWindowController.getInstance().loadInterface(Constants.FXML_BACK_MANAGE_DONATION_USER);
+       // MainWindowController.getInstance().loadInterface(Constants.FXML_BACK_MANAGE_DONATION_USER);
     }
 
     private void modifierDonationUser(DonationUser donationUser) {
         currentDonationUser = donationUser;
-        MainWindowController.getInstance().loadInterface(Constants.FXML_BACK_MANAGE_DONATION_USER);
+       // MainWindowController.getInstance().loadInterface(Constants.FXML_BACK_MANAGE_DONATION_USER);
     }
 
     private void supprimerDonationUser(DonationUser donationUser) {
@@ -115,7 +107,7 @@ public class ShowAllController implements Initializable {
         if (action.isPresent()) {
             if (action.get() == ButtonType.OK) {
                 if (DonationUserService.getInstance().delete(donationUser.getId())) {
-                    MainWindowController.getInstance().loadInterface(Constants.FXML_BACK_DISPLAY_ALL_DONATION_USER);
+//                    MainWindowController.getInstance().loadInterface(Constants.FXML_BACK_DISPLAY_ALL_DONATION_USER);
                 } else {
                     AlertUtils.makeError("Could not delete donationUser");
                 }

@@ -64,7 +64,7 @@ public class ManageController implements Initializable {
             if (currentDonationUser == null) {
                 if (DonationUserService.getInstance().add(donationUser)) {
                     AlertUtils.makeSuccessNotification("DonationUser ajouté avec succés");
-                    MainWindowController.getInstance().loadInterface(Constants.FXML_BACK_DISPLAY_ALL_DONATION_USER);
+                    //MainWindowController.getInstance().loadInterface(Constants.FXML_BACK_DISPLAY_ALL_DONATION_USER);
                 } else {
                     AlertUtils.makeError("Error");
                 }
@@ -73,7 +73,7 @@ public class ManageController implements Initializable {
                 if (DonationUserService.getInstance().edit(donationUser)) {
                     AlertUtils.makeSuccessNotification("DonationUser modifié avec succés");
                     ShowAllController.currentDonationUser = null;
-                    MainWindowController.getInstance().loadInterface(Constants.FXML_BACK_DISPLAY_ALL_DONATION_USER);
+                   // MainWindowController.getInstance().loadInterface(Constants.FXML_BACK_DISPLAY_ALL_DONATION_USER);
                 } else {
                     AlertUtils.makeError("Error");
                 }

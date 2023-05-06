@@ -68,17 +68,12 @@ public class ShowAllController implements Initializable {
             DonationUser donationUser
     ) {
         Parent parent = null;
-        try {
-            parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constants.FXML_FRONT_MODEL_DONATION_USER)));
-
-            HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
-            ((Text) innerContainer.lookup("#userText")).setText("User : " + donationUser.getUser());
-            ((Text) innerContainer.lookup("#amountText")).setText("Amount : " + donationUser.getAmount());
-            ((Text) innerContainer.lookup("#dateText")).setText("Date : " + donationUser.getDate());
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        // parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constants.FXML_FRONT_MODEL_DONATION_USER)));
+        
+        HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
+        ((Text) innerContainer.lookup("#userText")).setText("User : " + donationUser.getUser());
+        ((Text) innerContainer.lookup("#amountText")).setText("Amount : " + donationUser.getAmount());
+        ((Text) innerContainer.lookup("#dateText")).setText("Date : " + donationUser.getDate());
         return parent;
     }
 

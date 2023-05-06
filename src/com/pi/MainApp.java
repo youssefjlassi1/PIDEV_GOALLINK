@@ -1,5 +1,6 @@
 package com.pi;
 
+import com.pi.entities.User;
 import com.pi.utils.Constants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ public class MainApp extends Application {
 
     public static Stage mainStage;
     private static MainApp instance;
+    public static User session;
 
     public static void main(String[] args) {
         launch(args);
